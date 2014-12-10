@@ -71,11 +71,9 @@ module.exports = function(grunt) {
           // Something went wrong.
           grunt.log.write(msg).error().verbose.error(e.stack).or.error(e);
         }
-        if(i===(src.length-1)) {
-          process.chdir(cwd); // Go back to the original dir
-          meanTasks.exec();
-        }
       }
+      process.chdir(cwd); // Go back to the original dir
+      meanTasks.exec();
     });
   });
 
