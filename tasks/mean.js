@@ -54,6 +54,7 @@ module.exports = function(grunt) {
    * Load all the mean-packages grunts
    *    (That's the magic part!)
    */
+  grunt.verbose.subhead('Loading mean-packages grunts...');
   var cwd = process.cwd(); //save the current dir, we are going to manipulate it a little here...
 
   var src = grunt.file.expand(patterns);
@@ -77,9 +78,11 @@ module.exports = function(grunt) {
     }
   }
   process.chdir(cwd);// Go back to the original dir
+  grunt.verbose.subhead('Loading mean-packages grunts completed.');
 
   // Exec tasks
   grunt.registerTask('mean', 'Run all the tasks which injected by mean-packages.', function() {
+    grunt.log.ok('Starting mean tasks.');
     grunt.mean.exec();
   });
 
