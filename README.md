@@ -20,24 +20,16 @@ grunt.loadNpmTasks('grunt-mean');
 ## The "mean" task
 
 ### Overview
-In your project's Gruntfile, add a section named `mean` to the data object passed into `grunt.initConfig()`.
-
-```js
-grunt.initConfig({
-    mean: {
-      main: ['packages/**/meanGruntfile.js', '!packages/**/node_modules/**']
-    },
-});
-```
+In your project's Gruntfile, add a task named `mean` as "placeholder" to run all the injected tasks.
 
 ### Usage
 
 #### Injection Grunt to your mean-package
 
 1. Create `meanGruntfile.js` on your package.
-1. Export `function` with arguments of `function(grunt, mean)`
+1. Export `function` with arguments of `function(grunt)`
 1. Extend the config with the function **`grunt.config.extend()`**
-1. Add your task to the task list by using **`mean.push(task[, weight]);`**
+1. Add your task to the task list by using **`grunt.mean.push(task[, weight]);`**
     1. **task** - name of the task
     1. **weight** - weight to load the task [default: 0] *(lower is earlier)*
 
@@ -48,9 +40,9 @@ grunt.initConfig({
 ```js
 'use strict';
 
-module.exports = function(grunt, mean) {
+module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
-  
+
   grunt.config.merge({
     concat: {
       dist: {
@@ -61,7 +53,7 @@ module.exports = function(grunt, mean) {
   });
 
   //Inject the task to the task list
-  mean.push('concat', 10);
+  grunt.mean.push('concat', 10);
 };
 ```
 
@@ -69,4 +61,5 @@ module.exports = function(grunt, mean) {
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+_(0.2.0) loading outside the task_
 _(0.1.0) initial release_

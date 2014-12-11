@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(grunt, mean) {
+module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
 
   grunt.config.merge({
@@ -13,5 +13,5 @@ module.exports = function(grunt, mean) {
   });
 
   //Inject the task to the task list
-  mean.push('concat', 10);
+  grunt.mean.push('concat', 10);
 };
