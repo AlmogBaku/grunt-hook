@@ -8,7 +8,7 @@ This plugin requires Grunt `~0.4.5`.
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
-npm install grunt-hook --save-dev
+npm install grunt-hook --save
 ```
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
@@ -21,6 +21,13 @@ grunt.loadNpmTasks('grunt-hook');
 
 ### Overview
 In your project's Gruntfile, add a task named `hook` as "placeholder" to run all the injected tasks. This task will run all the tasks you injected.
+
+#### Example
+```js
+module.exports = function(grunt) {
+  grunt.registerTask('default', ['jshint', 'hook']);
+};
+```
 
 ### Usage
 
@@ -70,6 +77,13 @@ module.exports = function(grunt) {
   });
 };
 ```
+
+#### Projects that uses `grunt-hook`
+You can learn from use-cases of projects that uses `grunt-hook`:
+
+1. **[Mean.io](http://www.mean.io)** - Mean.io used `grunt-hook` to allow creating new tasks to the general flow of the framework by 3rd-party packages(like `mean-compass`).
+2. **[Mean-Compass](https://www.github.com/AlmogBaku/mean-compass)** - Mean-compass is example for hook-package that implement the `grunt-hook` plugin.
+
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
