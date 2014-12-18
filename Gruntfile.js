@@ -1,6 +1,6 @@
 /*
- * grunt-mean
- * https://github.com/AlmogBaku/grunt-mean
+ * grunt-hook
+ * https://github.com/AlmogBaku/grunt-hook
  *
  * Copyright (c) 2014 AlmogBaku
  * Licensed under the MIT license.
@@ -12,11 +12,11 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
+    hookPatterns: ['_Gruntfile.js', '**/_Gruntfile.js', '!node_modules/**'],
     jshint: {
       all: [
         'Gruntfile.js',
-        'tasks/*.js',
-        '<%= nodeunit.tests %>'
+        'tasks/*.js'
       ],
       options: {
         jshintrc: '.jshintrc'
@@ -27,7 +27,6 @@ module.exports = function(grunt) {
     clean: {
       tests: ['tmp']
     }
-
   });
 
   // Actually load this plugin's task(s).
@@ -36,11 +35,10 @@ module.exports = function(grunt) {
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'mean', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'hook']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);

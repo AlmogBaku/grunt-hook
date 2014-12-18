@@ -1,13 +1,17 @@
 'use strict';
-var patterns = ['packages/**/meanGruntfile.js', '!packages/**/node_modules/**'];
 var path = require('path');
 
 module.exports = function(grunt) {
+  var patterns = ['_Gruntfile.js', '**/_Gruntfile.js', '!node_modules/**'];
+  if(grunt.config.data.hookPatterns) {
+    patterns = grunt.config.data.hookPatterns;
+  }
+
   /**
-   * Mean tasks repository
+   * Hook tasks repository
    * @type {{tasks: Array, push: Function, get: Function, exec: Function}}
    */
-  grunt.mean = {
+  grunt.hook = {
     tasks: [],
     /**
      * Push new task
@@ -43,7 +47,7 @@ module.exports = function(grunt) {
     },
 
     /**
-     * Execute taks
+     * Execute tasks
      */
     exec: function() {
       grunt.task.run(this.get());
@@ -51,10 +55,10 @@ module.exports = function(grunt) {
   };
 
   /**
-   * Load all the mean-packages grunts
+   * Load all the hooked grunts
    *    (That's the magic part!)
    */
-  grunt.verbose.subhead('Loading mean-packages grunts...');
+  grunt.verbose.subhead('Loading hooked grunts...');
   var cwd = process.cwd(); //save the current dir, we are going to manipulate it a little here...
 
   var src = grunt.file.expand(patterns);
@@ -78,12 +82,12 @@ module.exports = function(grunt) {
     }
   }
   process.chdir(cwd);// Go back to the original dir
-  grunt.verbose.subhead('Loading mean-packages grunts completed.');
+  grunt.verbose.subhead('Loading hooked grunts completed.');
 
   // Exec tasks
-  grunt.registerTask('mean', 'Run all the tasks which injected by mean-packages.', function() {
-    grunt.log.ok('Starting mean tasks.');
-    grunt.mean.exec();
+  grunt.registerTask('hook', 'Run all the hooked tasks.', function() {
+    grunt.log.ok('Starting hooked tasks.');
+    grunt.hook.exec();
   });
 
 };

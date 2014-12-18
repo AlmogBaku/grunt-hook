@@ -7,11 +7,11 @@ module.exports = function(grunt) {
     concat: {
       dist: {
         src: ['*.js'],
-        dest: 'test-concat.js'
+        dest: 'tmp/test-concat.js'
       }
     }
   });
 
   //Inject the task to the task list
-  grunt.mean.push('concat', 10);
+  grunt.hook.push('concat', 10);
 };
