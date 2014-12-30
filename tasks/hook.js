@@ -64,10 +64,10 @@ module.exports = function(grunt) {
   var src = grunt.file.expand(patterns);
   for(var i=0;i<src.length;i+=1) {
     var gruntfile = src[i];
-    var msg = 'Loading "' + path.basename(gruntfile) + '" task...';
+    var msg = 'Loading "' + path.basename(path.dirname(gruntfile)) + '" task...';
 
     try {
-      var fullPath = path.resolve(gruntfile);
+      var fullPath = path.resolve(cwd, gruntfile);
       process.chdir(path.dirname(fullPath)); // Change the process dir for loading internal npms
 
       // Load taskfile.
