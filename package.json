@@ -1,7 +1,7 @@
 {
   "name": "grunt-hook",
   "description": "Allows hooking tasks to grunt from other files.",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "homepage": "https://github.com/AlmogBaku/grunt-hook",
   "author": {
     "name": "AlmogBaku",
